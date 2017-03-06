@@ -8,12 +8,28 @@ import java.util.*;
  */
 public class SortFile {
 
-    List<String> str = new ArrayList<>();
+    private List<String> str = new ArrayList<>();
 
+    private static boolean process(String source, String target) {
+        if (source == null || target == null) {
+            throw new IllegalArgumentException();
+        }
+        try {
+            SortFile sf = new SortFile();
+            sf.read(source);
+            sf.sort();
+            sf.write(target);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
 
     private void read(String source) throws IOException {
         try {
-            File file = new File(source);
+            String path = "src\\main\\resources\\";
+            String fullPath = path+source;
+            File file = new File(fullPath);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
@@ -27,14 +43,15 @@ public class SortFile {
 
     }
 
-    void dublicate() {
+    private void sort() {
         Collections.sort(str);
-
     }
 
     private void write(String target) {
         try {
-            File fout = new File(target);
+            String path = "src\\main\\resources\\";
+            String fullPath = path+target;
+            File fout = new File(fullPath);
             FileOutputStream fos = new FileOutputStream(fout);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
 
@@ -48,9 +65,10 @@ public class SortFile {
         }
     }
 
+
+
     public static void main(String[] args) throws IOException {
-        SortFile sortFile = new SortFile();
-        sortFile.read("src\\main\\resource\\a.txt");
-        System.out.println(sortFile.str);
+        SortFile.process("a.txt", "b.txt");
+
     }
 }
