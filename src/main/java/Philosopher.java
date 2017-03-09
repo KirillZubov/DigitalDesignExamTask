@@ -1,7 +1,5 @@
 package main.java;
 
-import java.util.Arrays;
-
 /**
  * Created by KirillZubov on 3/9/2017.
  */
@@ -81,7 +79,6 @@ public class Philosopher implements Runnable {
     private void isHungryPhilopher() {
         if (eatOrNoteat > 10) {
             System.out.println("Philopher   is   Hungry");
-            return;
         }
     }
 
@@ -91,7 +88,7 @@ public class Philosopher implements Runnable {
         try {
             while (true) {
                 tryEat();
-                System.out.println(philosophersName + "  " + status + " " + eatOrNoteat+" "+ Arrays.toString(forks));
+                System.out.println("Name: "+philosophersName + " " + status + "  Iterations without food "+eatOrNoteat);
                 think();
                 isHungryPhilopher();
             }
@@ -109,11 +106,11 @@ public class Philosopher implements Runnable {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Philosopher f1 = new Philosopher("Aristotel", 0);
-        Philosopher f2 = new Philosopher("Socrat", 1);
-        Philosopher f3 = new Philosopher("Platon", 2);
-        Philosopher f4 = new Philosopher("Nishce", 3);
-        Philosopher f5 = new Philosopher("Gomer", 4);
+        Philosopher f1 = new Philosopher("Aristotle", 0);
+        Philosopher f2 = new Philosopher("Plato", 1);
+        Philosopher f3 = new Philosopher("Confucius", 2);
+        Philosopher f4 = new Philosopher("Epicurus", 3);
+        Philosopher f5 = new Philosopher("John Locke", 4);
         f1.start();
         f2.start();
         f3.start();
