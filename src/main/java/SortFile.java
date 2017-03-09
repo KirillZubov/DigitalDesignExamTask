@@ -1,34 +1,35 @@
 package main.java;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by KirillZubov on 3/6/2017.
  */
 public class SortFile {
 
-    private List<String> str = new ArrayList<>();
+    private static List<String> str = new ArrayList<>();
 
-    private static boolean process(String source, String target) {
+    public boolean process(String source, String target) {
         if (source == null || target == null) {
             throw new IllegalArgumentException();
         }
         try {
-            SortFile sf = new SortFile();
-            sf.read(source);
-            sf.sort();
-            sf.write(target);
+            read(source);
+            sort();
+            write(target);
             return true;
         } catch (IOException e) {
             return false;
         }
     }
 
-    private void read(String source) throws IOException {
+    private static void read(String source) throws IOException {
         try {
             String path = "src\\main\\resources\\";
-            String fullPath = path+source;
+            String fullPath = path + source;
             File file = new File(fullPath);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -37,20 +38,20 @@ public class SortFile {
                 str.add(line);
             }
             fileReader.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.fillInStackTrace();
         }
 
     }
 
-    private void sort() {
+    private static void sort() {
         Collections.sort(str);
     }
 
-    private void write(String target) {
+    private static void write(String target) {
         try {
             String path = "src\\main\\resources\\";
-            String fullPath = path+target;
+            String fullPath = path + target;
             File fout = new File(fullPath);
             FileOutputStream fos = new FileOutputStream(fout);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
@@ -65,10 +66,33 @@ public class SortFile {
         }
     }
 
+    public void find(String key) {
+        System.out.println("Found line: ");
+        for (String s : str) {
+            if (s.contains(key)) {
+                System.out.println(" " + s);
+            }
+        }
+        System.out.println();
+    }
+
+    public void findRV(String key) {
+        String pattern = ".*" + key + ".*";
+        System.out.println("Found line: ");
+        for (String s : str) {
+            if (s.matches(pattern)) {
+                System.out.println(" " + s);
+            }
+        }
+        System.out.println();
+    }
 
 
     public static void main(String[] args) throws IOException {
-        SortFile.process("a.txt", "b.txt");
+        SortFile sf = new SortFile();
+        sf.process("a.txt", "b.txt");
+        sf.find("a");
+        sf.findRV("a");
 
     }
 }
