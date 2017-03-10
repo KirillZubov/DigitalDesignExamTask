@@ -2,4 +2,4 @@
 # README #
 
 
-[ ![Codeship Status for kirillzubov/digitaldesignjavaschool](https://app.codeship.com/projects/f91e8500-e4dc-0134-270f-12d44746a690/status?branch=master)](https://app.codeship.com/projects/206331)
+[ ![Codeship Status for KirillZubov/DigitalDesignExamTask](https://app.codeship.com/projects/cd4b0530-e7ca-0134-f2e3-1ea33b163dd4/status?branch=master)](https://app.codeship.com/projects/207217)
