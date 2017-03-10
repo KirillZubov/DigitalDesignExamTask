@@ -29,7 +29,7 @@ public class Philosopher implements Runnable {
         if (!forks[numforkLeft]) {
             forks[numforkLeft] = true;
             Thread.sleep(10);
-        }else{
+        } else {
             putFolk();
         }
     }
@@ -88,7 +88,7 @@ public class Philosopher implements Runnable {
         try {
             while (true) {
                 tryEat();
-                System.out.println("Name: "+philosophersName + " " + status + "  Iterations without food "+eatOrNoteat);
+                System.out.println("Name: " + philosophersName + " " + status + "  Iterations without food " + eatOrNoteat);
                 think();
                 isHungryPhilopher();
             }
@@ -116,9 +116,5 @@ public class Philosopher implements Runnable {
         f3.start();
         f4.start();
         f5.start();
-
-
     }
-
-
 }
